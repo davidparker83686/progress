@@ -12,12 +12,12 @@ const routes = [
     component: loadPage('HomePage')
   },
   {
-    path: '/groupDetails',
+    path: '/group/:id',
     name: 'GroupDetailsPage',
     component: loadPage('GroupDetailsPage')
   },
   {
-    path: '/projectDetails',
+    path: '/project/:id',
     name: 'ProjectDetailsPage',
     component: loadPage('ProjectDetailsPage')
   },
