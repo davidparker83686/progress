@@ -14,23 +14,27 @@ const routes = [
   {
     path: '/group/:id',
     name: 'GroupPage',
-    component: loadPage('GroupPage')
+    component: loadPage('GroupPage'),
+    beforeEnter: authGuard
   },
   {
     path: '/project/:id',
     name: 'ProjectPage',
-    component: loadPage('ProjectPage')
+    component: loadPage('ProjectPage'),
+    beforeEnter: authGuard
   },
 
   {
     path: '/group/:id',
     name: 'GroupDetailsPage',
-    component: loadPage('GroupDetailsPage')
+    component: loadPage('GroupDetailsPage'),
+    beforeEnter: authGuard
   },
   {
     path: '/project/:id',
     name: 'ProjectDetailsPage',
-    component: loadPage('ProjectDetailsPage')
+    component: loadPage('ProjectDetailsPage'),
+    beforeEnter: authGuard
   },
 
   {

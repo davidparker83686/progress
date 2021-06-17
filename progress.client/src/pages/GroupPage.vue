@@ -58,10 +58,6 @@ export default {
 .star{
   color:yellow
 }
-.background-img{
-  background-image: url('../assets/img/Untitled.jpg');
-  background-size: cover;
-}
 .review-scroll{
     overflow-y: scroll;
           overflow-x: hidden;
