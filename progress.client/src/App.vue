@@ -6,7 +6,7 @@
     <router-view />
   </main>
   <footer>
-    <div class=" text-center ">
+    <div class=" text-center text-primary">
       PROGRESS | 2021
     </div>
   </footer>
