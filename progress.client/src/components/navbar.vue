@@ -1,38 +1,12 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg justify-content-between">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img
-          alt="logo"
-          src="../assets/img/cw-logo.png"
-          height="45"
-        />
+        <h1>PROGRESS</h1>
       </div>
     </router-link>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarText"
-      aria-controls="navbarText"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon" />
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <router-link :to="{ name: 'Home' }" class="nav-link">
-            Home
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link :to="{ name: 'About' }" class="nav-link">
-            About
-          </router-link>
-        </li>
-      </ul>
+
+    <div class="text-right" id="navbarText">
       <span class="navbar-text">
         <button
           class="btn btn-outline-primary text-uppercase"
@@ -44,27 +18,23 @@
 
         <div class="dropdown" v-else>
           <div
-            class="dropdown-toggle"
+            style="cursor: pointer;"
+
             @click="state.dropOpen = !state.dropOpen"
           >
             <img
               :src="user.picture"
               alt="user photo"
               height="40"
-              class="rounded"
+              class="rounded-circle"
             />
-            <span class="mx-3">{{ user.name }}</span>
+            <span class="mx-3 username">{{ user.name }}</span>
           </div>
           <div
             class="dropdown-menu p-0 list-group w-100"
             :class="{ show: state.dropOpen }"
             @click="state.dropOpen = false"
           >
-            <router-link :to="{ name: 'Account' }">
-              <div class="list-group-item list-group-item-action hoverable">
-                Account
-              </div>
-            </router-link>
             <div
               class="list-group-item list-group-item-action hoverable"
               @click="logout"
@@ -123,5 +93,11 @@ a:hover {
 }
 .nav-item .nav-link.router-link-exact-active{
   color: var(--primary);
+}
+
+@media screen and (max-width:760px){
+  .username{
+display: none;
+  }
 }
 </style>
