@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg justify-content-between">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
+      <div class="d-flex flex-column align-items-center ml-md-5 mt-md-3">
         <h1>PROGRESS</h1>
       </div>
     </router-link>

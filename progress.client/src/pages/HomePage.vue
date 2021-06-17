@@ -1,34 +1,40 @@
 <template>
   <div class="container-fluid border-top">
     <div class="row ">
-      <div type="button" class="col-12 ml-md-5 my-5 hovertext">
-        <h2>
-          PROJECTS
-        </h2>
-        <h5>
-          TRACK PROGRESS ON ALL YOUR PROJECTS
-        </h5>
-      </div>
+      <router-link style="color: inherit;" :to="{name: 'ProjectPage', params: {id: result.creatorId}}">
+        <div type="button" class="col-12 ml-md-5 my-5 hovertext">
+          <h2>
+            PROJECTS
+          </h2>
+          <h5>
+            TRACK PROGRESS ON ALL YOUR PROJECTS
+          </h5>
+        </div>
+      </router-link>
     </div>
     <div class="row ">
-      <div type="button" class="col-12 ml-md-5 hovertext">
-        <h2>
-          MY GROUPS
-        </h2>
-        <h5>
-          COMPILE PROJECTS INTO COLLECTIONS, GROUPINGS , ETC
-        </h5>
-      </div>
+      <router-link style="color: inherit;" :to="{name: 'GroupPage', params: {id: result.creatorId}}">
+        <div type="button" class="col-12 ml-md-5 hovertext">
+          <h2>
+            MY GROUPS
+          </h2>
+          <h5>
+            COMPILE PROJECTS INTO COLLECTIONS, GROUPINGS , ETC
+          </h5>
+        </div>
+      </router-link>
     </div>
     <div class="row ">
-      <div type="button" class="col-12 my-5 ml-md-5 hovertext">
-        <h2>
-          MY ACCOUNT
-        </h2>
-        <h5>
-          VIEW AND EDIT ACCOUNT INFO
-        </h5>
-      </div>
+      <router-link style="color: inherit;" :to="{name: 'ProfilePage', params: {id: result.creatorId}}">
+        <div type="button" class="col-12 my-5 ml-md-5 hovertext">
+          <h2>
+            MY ACCOUNT
+          </h2>
+          <h5>
+            VIEW AND EDIT ACCOUNT INFO
+          </h5>
+        </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -49,7 +55,7 @@ export default {
   }
 }
 .hovertext{
-  color:rgb(0, 0, 29)
+  color: var(--primary)
 }
 .hovertext:hover{
   color:rgb(0, 195, 255)
