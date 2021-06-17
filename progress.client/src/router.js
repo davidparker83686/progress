@@ -13,6 +13,17 @@ const routes = [
   },
   {
     path: '/group/:id',
+    name: 'GroupPage',
+    component: loadPage('GroupPage')
+  },
+  {
+    path: '/project/:id',
+    name: 'ProjectPage',
+    component: loadPage('ProjectPage')
+  },
+
+  {
+    path: '/group/:id',
     name: 'GroupDetailsPage',
     component: loadPage('GroupDetailsPage')
   },
@@ -21,6 +32,7 @@ const routes = [
     name: 'ProjectDetailsPage',
     component: loadPage('ProjectDetailsPage')
   },
+
   {
     path: '/about',
     name: 'About',
