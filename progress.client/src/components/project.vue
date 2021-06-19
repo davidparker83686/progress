@@ -1,6 +1,6 @@
 <template>
   <router-link :to="{name: 'ProjectDetailsPage', params: {id: project.id}}">
-    <div class="row tan rounded hoverable" @click="makeProjectActive(project)">
+    <div class="row tan rounded hoverable my-2" @click="makeProjectActive(project)">
       <div class="col-12 d-flex justify-content-between">
         <div>
           <h3> {{ project.title }}</h3>

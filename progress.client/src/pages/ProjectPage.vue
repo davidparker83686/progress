@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid border-top projectpage">
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 my-3">
         <h3>MY PROJECTS</h3>
         <h5>Track all your projects. Adding progress to your projects and assinging them to group or leave them solo. </h5>
       </div>
