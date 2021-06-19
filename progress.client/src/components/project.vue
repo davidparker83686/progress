@@ -1,62 +1,22 @@
 <template>
-  <!-- Start of accordian menue -->
-  <div class="accordion" id="accordionExample">
-    <div class="row card shadow mb-2 mx-0 mx-md-1 project">
-      <div class="px-2 px-md-3 lightgrey " id="headingOne">
-        <div class="mb-0">
-          <button class="btn btn-link btn-block shadow-none text-left px-0"
-                  style="text-decoration: none;"
-                  type="button"
-                  data-toggle="collapse"
-                  :data-target="'#collapseOne'+project.id"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-          >
-            <div class="justify-content-between d-flex">
-              <div>
-                <span>
-                  <h2 class="d-inline">{{ project.title.toUpperCase() }} -</h2>
-                  <h4 class="available d-inline" v-if="project.availability == true">
-                    Available
-                  </h4><h4 class="not-available d-inline" v-if="project.availability == false">
-                    Not Available
-                  </h4>
-                </span>
-              </div>
-            </div>
-          </button>
+  <router-link :to="{name: 'ProjectDetailsPage', params: {id: project.id}}">
+    <div class="row tan rounded hoverable" @click="makeProjectActive(project)">
+      <div class="col-12 d-flex justify-content-between">
+        <div>
+          <h3> {{ project.title }}</h3>
+        </div>
+        <div>
+          {{ Date(project.updatedAt).split(' ')[0] }},
+          {{ Date(project.updatedAt).split(' ')[1] }} /
+          {{ Date(project.updatedAt).split(' ')[2] }} /
+          {{ Date(project.updatedAt).split(' ')[3] }}
         </div>
       </div>
-      <div :id="'collapseOne'+project.id" class="collapse col-12 show" aria-labelledby="headingOne" data-parent="#accordionExample">
-        <div class=" row justify-content-between">
-          <div class="col-12 col-md-3 mt-2">
-            <img class="img-fluid rounded" :src="project.picture" alt="Project Picture" v-if="project.picture">
-          </div>
-          <div class="col-12 col-md-9 mt-2">
-            <h5><b>{{ project.title.toUpperCase() }}</b></h5>
-            <span class=" col-12 col-md-9">
-              {{ project.description }}
-            </span>
-          </div>
-          <div class="buttons col-12 mb-2 text-right pt-3 pt-md-0 userbuttons">
-            <button v-if="state.account.id === project.creatorId" type="button" class="btn btn-outline-danger" @click.prevent="deleteProject(project.id)">
-              Delete
-            </button>
-            <button v-if="state.account.id === project.creatorId"
-                    type="button"
-                    class="mx-1 btn btn-outline-primary "
-                    data-toggle="modal"
-                    :data-target="'#projectEditModal' + project.id"
-                    @click="assignActiveProject(project)"
-            >
-              Edit
-            </button>
-          </div>
-        </div>
+      <div class="col-12">
+        <h5> {{ project.description }}</h5>
       </div>
     </div>
-    <project-edit-modal :project-prop="project" />
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -86,14 +46,6 @@ export default {
             await projectsService.deleteProject(id)
             Notification.toast('Successfully Deleted Project', 'success')
           }
-        } catch (error) {
-          logger.error(error)
-        }
-      },
-      async toggleAvailability(project) {
-        try {
-          await projectsService.toggleAvailability(project)
-          Notification.toast('Successfully Toggled Availability', 'success')
         } catch (error) {
           logger.error(error)
         }
@@ -132,12 +84,7 @@ a:hover {
 .nav-project .nav-link.router-link-exact-active{
   color: var(--primary);
 }
-.available {
-  color: var(--success)
-}
-.not-available {
-  color: var(--danger)
-}
+
 .lightgrey{
   background-color: rgba(236, 236, 236, 0.315);
 }
@@ -145,5 +92,11 @@ a:hover {
   .userbuttons{
 justify-content: space-around;
   }
+}
+.tan{
+  background-color: rgb(255, 241, 224);
+}
+.tan:hover{
+background-color: rgb(255, 188, 157);
 }
 </style>
