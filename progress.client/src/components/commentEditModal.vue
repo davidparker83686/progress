@@ -1,19 +1,18 @@
 <template>
-  <!-- :id="'itemEditModal' + itemProp.id" -->
   <div>
     <div class="modal "
-         :id="'itemEditModal'+ itemProp.id"
+         :id="'commentEditModal'+ commentProp.id"
          tabindex="-1"
          role="dialog"
          aria-labelledby="exampleModalLabel"
          aria-hidden="true"
     >
-      <!-- :id="'exampleModal'+item.id" -->
+      <!-- :id="'exampleModal'+comment.id" -->
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">
-              EDIT YOUR LISTING
+              EDIT YOUR COMMENT
             </h5>
           </div>
           <div class="modal-body">
@@ -26,7 +25,7 @@
                        placeholder="Title..."
                        minlength="3"
                        maxlength="40"
-                       v-model="state.editedItem.title"
+                       v-model="state.editedComment.title"
                 >
               </div>
               <div class="form-group">
@@ -37,31 +36,19 @@
                           placeholder="Description..."
                           minlength="3"
                           maxlength="2000"
-                          v-model="state.editedItem.description"
+                          v-model="state.editedComment.description"
                 >
                 </textarea>
               </div>
-
-              <!-- <div class="form-group">
-                <label for="description">Description</label>
-                <input type="text"
-                       class="form-control inputheight"
-                       id="description"
-                       placeholder="Description..."
-                       minlength="3"
-                       maxlength="2000"
-                       v-model="state.editedItem.description"
-                >
-              </div> -->
               <div class="form-group">
-                <label for="picture">Picture</label>
+                <label for="image">Image</label>
                 <input type="text"
                        class="form-control"
-                       id="picture"
-                       placeholder="Picture..."
+                       id="image"
+                       placeholder="Image..."
                        minlength="3"
-                       maxlength="500"
-                       v-model="state.editedItem.picture"
+                       maxlength="5000"
+                       v-model="state.editedComment.image"
                 >
               </div>
 
@@ -69,7 +56,7 @@
                 <button type="button" class="btn btn-danger" data-dismiss="modal">
                   Dismiss
                 </button>
-                <button type="submit" class="btn btn-primary" @click="editItem()">
+                <button type="submit" class="btn btn-primary" @click="editComment()">
                   Save
                 </button>
                 <!-- <button type="submit" class="btn btn-primary">
@@ -86,29 +73,29 @@
 
 <script>
 import { reactive } from 'vue'
-import { itemsService } from '../services/ItemsService'
+import { commentsService } from '../services/CommentsService'
 import { logger } from '../utils/Logger'
 import $ from 'jquery'
 export default {
-  name: 'ItemEditModal',
+  name: 'CommentEditModal',
   props: {
-    itemProp: {
+    commentProp: {
       type: Object,
       required: true
     }
   },
   setup(props) {
     const state = reactive({
-      editedItem: {}
+      editedComment: {}
     })
     return {
       state,
-      async editItem() {
+      async editComment() {
         try {
-          await itemsService.editItem(state.editedItem)
-          state.editedItem = {}
-          $('#itemEditModal' + props.itemProp.id).modal('hide')
-          Notification.toast('Successfully Edited Item', 'success')
+          await commentsService.editComment(state.editedComment)
+          state.editedComment = {}
+          $('#commentEditModal' + props.commentProp.id).modal('hide')
+          Notification.toast('Successfully Edited Comment', 'success')
         } catch (error) {
           logger.error(error)
         }
