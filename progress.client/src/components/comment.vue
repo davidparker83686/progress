@@ -5,10 +5,18 @@
         <h3> {{ comment.title }}</h3>
       </div>
       <div>
-        {{ Date(comment.updatedAt).split(' ')[0] }},
-        {{ Date(comment.updatedAt).split(' ')[1] }} /
-        {{ Date(comment.updatedAt).split(' ')[2] }} /
-        {{ Date(comment.updatedAt).split(' ')[3] }}
+        <button type="button" class="btn btn-primary" title="DELETE COMMENT" aria="" @click="deleteComment(comment)">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+        <button type="button"
+                class="btn btn-primary"
+                title="EDIT COMMENT"
+                aria=""
+                data-toggle="modal"
+                :data-target="'#commenttEditModal' + comment.id"
+        >
+          <i class="fas fa-edit"></i>
+        </button>
       </div>
     </div>
     <div class="col-12" v-if="comment.description">
@@ -51,14 +59,6 @@ export default {
           }
         } catch (error) {
           logger.error(error)
-        }
-      },
-      async editComment(comment) {
-        try {
-          await commentsService.editComment(comment)
-          Notification.toast('Successfully Edited Comment', 'success')
-        } catch (error) {
-          console.error(error)
         }
       },
       async makeCommentActive(comment) {
