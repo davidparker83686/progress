@@ -13,10 +13,16 @@
         </div>
       </div>
       <div>
-        <button type="button" class="btn btn-primary" title="DELETE PROJECT" aria="">
+        <button type="button" class="btn btn-primary" title="DELETE PROJECT" aria="" @click="deleteProject(project)">
           <i class="fas fa-trash-alt"></i>
         </button>
-        <button type="button" class="btn btn-primary" title="EDIT PROJECT" aria="">
+        <button type="button"
+                class="btn btn-primary"
+                title="EDIT PROJECT"
+                aria=""
+                data-toggle="modal"
+                :data-target="'#projectEditModal' + state.activeProject.id"
+        >
           <i class="fas fa-edit"></i>
         </button>
       </div>
@@ -27,7 +33,13 @@
         <h5>{{ state.activeProject.description }}</h5>
       </div>
       <div class="col-3">
-        <button type="button" class="btn btn-primary" title="ADD COMMENT" aria="">
+        <button type="button"
+                class="btn btn-primary"
+                title="ADD COMMENT"
+                aria=""
+                data-toggle="modal"
+                :data-target="'#commentCreationModal' + state.activeProject.id"
+        >
           ADD COMMENT
         </button>
       </div>
@@ -89,27 +101,27 @@ export default {
           logger.error(error)
         }
       },
-      async editProject() {
-        try {
-          await projectsService.editProject(route.params.id)
-        } catch (error) {
-          logger.error(error)
-        }
-      },
+      // async editProject() {
+      //   try {
+      //     await projectsService.editProject(route.params.id)
+      //   } catch (error) {
+      //     logger.error(error)
+      //   }
+      // },
       async addToGroup() {
         try {
           await groupsService.addToGroup(route.params.id)
         } catch (error) {
           logger.error(error)
         }
-      },
-      async createComment() {
-        try {
-          await commentsService.createComment(route.params.id)
-        } catch (error) {
-          logger.error(error)
-        }
       }
+      // async createComment() {
+      //   try {
+      //     await commentsService.createComment(route.params.id)
+      //   } catch (error) {
+      //     logger.error(error)
+      //   }
+      // }
     }
   }
 }

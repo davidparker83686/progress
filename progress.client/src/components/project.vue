@@ -3,7 +3,8 @@
     <div class="row tan rounded hoverable my-2" @click="makeProjectActive(project)">
       <div class="col-12 d-flex justify-content-between">
         <div>
-          <h3> {{ project.title }}</h3>
+          <h3> {{ project.title }} <span v-if="project.favorite==true"><i class="far fa-star"></i></span></h3>
+          <span v-if="project.favorite==true"><i class="far fa-star"></i></span>
         </div>
         <div>
           {{ Date(project.updatedAt).split(' ')[0] }},

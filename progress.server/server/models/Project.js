@@ -5,6 +5,7 @@ const Project = new Schema(
   {
     title: { type: String, required: true },
     description: { type: String, required: true },
+    favorite: { type: Boolean, required: false, default: false },
     creatorId: { type: String, ref: 'Account', required: true }
   },
   { timestamps: true, toJSON: { virtuals: true } }
