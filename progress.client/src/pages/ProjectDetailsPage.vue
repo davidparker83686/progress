@@ -3,13 +3,13 @@
     <!-- title and date and edit/delete button -->
     <div class="row justify-content-between">
       <div>
-        <h2>{{ project.title }}</h2>
+        <h2>{{ state.activeProject.title }}</h2>
         <br>
         <div>
-          {{ Date(project.updatedAt).split(' ')[0] }},
-          {{ Date(project.updatedAt).split(' ')[1] }} /
-          {{ Date(project.updatedAt).split(' ')[2] }} /
-          {{ Date(project.updatedAt).split(' ')[3] }}
+          {{ Date(state.activeProject.updatedAt).split(' ')[0] }},
+          {{ Date(state.activeProject.updatedAt).split(' ')[1] }} /
+          {{ Date(state.activeProject.updatedAt).split(' ')[2] }} /
+          {{ Date(state.activeProject.updatedAt).split(' ')[3] }}
         </div>
       </div>
       <div>
@@ -24,7 +24,7 @@
     <!-- description and ADD COMMENT -->
     <div class="row justify-content-between">
       <div class="col-8">
-        <h5>{{ project.description }}</h5>
+        <h5>{{ state.activeProject.description }}</h5>
       </div>
       <div class="col-3">
         <button type="button" class="btn btn-primary" title="ADD COMMENT" aria="">
