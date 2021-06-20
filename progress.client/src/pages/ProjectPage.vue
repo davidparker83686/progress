@@ -1,14 +1,30 @@
 <template>
   <div class="container-fluid border-top projectpage">
     <div class="row">
-      <div class="col-12 my-3">
+      <!-- title -->
+      <div class="col-12  my-3 ml-md-5 d-flex ">
         <h3>MY PROJECTS</h3>
+        <button type="button"
+                class="mx-3 btn btn-none text-primary btn-outline-primary"
+                data-toggle="modal"
+                data-target="#projectCreationModal"
+                title="CREATE PROJECT"
+                aria="CREATE PROJECT"
+        >
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+      <!-- description -->
+      <div class="col-12  ml-md-5">
         <h5>Track all your projects. Adding progress to your projects and assinging them to group or leave them solo. </h5>
       </div>
-      <div class="col-12">
+      <!-- v-for projects -->
+      <div class="col-12 my-3 ml-md-5">
+        hi
         <Project v-for="project in state.projects" :key="project.id" :project="project" />
       </div>
     </div>
+    <project-creation-modal />
   </div>
 </template>
 

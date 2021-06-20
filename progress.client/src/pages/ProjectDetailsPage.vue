@@ -46,7 +46,7 @@
     </div>
     <!-- v-for comments-->
     <div class="row scroll">
-      <div class="col-12">
+      <div class="col-12 ml-md-5">
         <Comment v-for="comment in state.comments" :key="comment.id" :comment="comment" />
       </div>
     </div>
