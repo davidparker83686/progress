@@ -23,7 +23,7 @@
                        class="form-control"
                        id="title"
                        placeholder="Title..."
-                       minlength="3"
+                       minlength="0"
                        maxlength="40"
                        v-model="state.editedComment.title"
                 >

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="modal "
-         :id="'projectEditModal'+ projectProp.id"
+         id="projectEditModal"
          tabindex="-1"
          role="dialog"
          aria-labelledby="exampleModalLabel"
@@ -22,7 +22,7 @@
                 <input type="text"
                        class="form-control"
                        id="title"
-                       placeholder="Title..."
+                       :placeholder="activeProject.title"
                        minlength="3"
                        maxlength="40"
                        v-model="state.editedProject.title"
@@ -33,7 +33,7 @@
                 <textarea type="text"
                           class="form-control inputheight"
                           id="description"
-                          placeholder="Description..."
+                          :placeholder="activeProject.description"
                           minlength="3"
                           maxlength="2000"
                           v-model="state.editedProject.description"
@@ -57,10 +57,11 @@
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { onMounted, reactive } from 'vue'
 import { projectsService } from '../services/ProjectsService'
 import { logger } from '../utils/Logger'
-import $ from 'jquery'
+import { useRoute } from 'vue-router'
+// import $ from 'jquery'
 export default {
   name: 'ProjectEditModal',
   props: {
@@ -70,8 +71,16 @@ export default {
     }
   },
   setup(props) {
+    const route = useRoute()
     const state = reactive({
       editedProject: {}
+    })
+    onMounted(async() => {
+      try {
+        await projectsService.getActiveProject(route.params.id)
+      } catch (error) {
+        console.error(error)
+      }
     })
     return {
       state,
@@ -79,7 +88,7 @@ export default {
         try {
           await projectsService.editProject(state.editedProject)
           state.editedProject = {}
-          $('#projectEditModal' + props.projectProp.id).modal('hide')
+          '#projectEditModal'.modal('hide')
           Notification.toast('Successfully Edited Project', 'success')
         } catch (error) {
           logger.error(error)

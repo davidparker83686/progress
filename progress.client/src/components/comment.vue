@@ -25,6 +25,7 @@
     <div class="col-12" v-if="comment.image">
       {{ comment.image }}
     </div>
+    <comment-edit-modal :comment-prop="comment" />
   </div>
 </template>
 

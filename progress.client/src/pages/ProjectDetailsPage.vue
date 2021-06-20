@@ -21,7 +21,7 @@
                 title="EDIT PROJECT"
                 aria=""
                 data-toggle="modal"
-                :data-target="'#projectEditModal' + state.activeProject.id"
+                data-target="#projectEditModal"
         >
           <i class="fas fa-edit"></i>
         </button>
@@ -50,13 +50,14 @@
         <Comment v-for="comment in state.comments" :key="comment.id" :comment="comment" />
       </div>
     </div>
+    <project-edit-modal />
+    <comment-creation-modal />
   </div>
 </template>
 
 <script>
 import { onMounted, computed, reactive } from 'vue'
 import { AppState } from '../AppState'
-import { logger } from '../utils/Logger'
 import { projectsService } from '../services/ProjectsService'
 import { groupsService } from '../services/GroupsService'
 import { commentsService } from '../services/CommentsService'
@@ -69,10 +70,10 @@ export default {
   //     type: Object,
   //     required: true
   //   },
-  //   project: {
-  //     type: Object,
-  //     required: true
-  //   }
+  // project: {
+  //   type: Object,
+  //   required: true
+  // },
   // },
   setup(props) {
     const route = useRoute()
@@ -89,7 +90,7 @@ export default {
         await projectsService.getActiveProject(route.params.id)
         await commentsService.getCommentsByUserProject(route.params.id)
       } catch (error) {
-        logger.error(error)
+        console.error(error)
       }
     })
     return {
@@ -98,30 +99,16 @@ export default {
         try {
           await projectsService.deleteProject(route.params.id)
         } catch (error) {
-          logger.error(error)
+          console.error(error)
         }
       },
-      // async editProject() {
-      //   try {
-      //     await projectsService.editProject(route.params.id)
-      //   } catch (error) {
-      //     logger.error(error)
-      //   }
-      // },
       async addToGroup() {
         try {
           await groupsService.addToGroup(route.params.id)
         } catch (error) {
-          logger.error(error)
+          console.error(error)
         }
       }
-      // async createComment() {
-      //   try {
-      //     await commentsService.createComment(route.params.id)
-      //   } catch (error) {
-      //     logger.error(error)
-      //   }
-      // }
     }
   }
 }
