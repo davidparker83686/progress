@@ -4,12 +4,7 @@
   </header>
   <main>
     <router-view />
-    <!-- <project-creation-modal />
-    <project-edit-modal />
-    <comment-creation-modal />
-    <comment-edit-modal />
-    <group-creation-modal />
-    <group-edit-modal /> -->
+    <project-creation-modal />
   </main>
   <footer>
     <div class=" text-center text-primary">

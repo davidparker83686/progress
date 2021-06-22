@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <div class="modal "
+    <div class="modal"
          id="projectCreationModal"
          tabindex="-1"
          role="dialog"
@@ -23,8 +23,8 @@
                        class="form-control"
                        id="title"
                        placeholder="Title..."
-                       minlength="3"
-                       maxlength="50"
+                       minlength="1"
+                       maxlength="500"
                        v-model="state.newProject.title"
                        required
                 >
@@ -35,7 +35,7 @@
                           class="form-control inputheight"
                           id="description"
                           placeholder="Description..."
-                          minlength="3"
+                          minlength="1"
                           maxlength="1000"
                           v-model="state.newProject.description"
                           required
@@ -60,35 +60,25 @@
 </template>
 
 <script>
-import { reactive, computed } from 'vue'
+import { reactive } from 'vue'
 import { projectsService } from '../services/ProjectsService'
 import $ from 'jquery'
-import { AppState } from '../AppState'
-import { accountService } from '../services/AccountService'
+// import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 export default {
   name: 'ProjectCreationModal',
   setup() {
     const state = reactive({
-      newProject: {},
-      account: computed(() => AppState.account)
+      newProject: {}
+      // account: computed(() => AppState.account)
     })
     return {
       state,
       async createProject() {
         try {
-          if (!state.account.location) {
-            const confirm = window.confirm('Do you want our application to have access to your Location? To create a new project you must share your location')
-            if (confirm) {
-              await accountService.getLocation()
-            } else {
-              $('#projectCreationModal').modal('hide')
-            }
-          } else {
-            await projectsService.createProject(state.newProject)
-            state.newProject = {}
-            $('#projectCreationModal').modal('hide')
-          }
+          await projectsService.createProject(state.newProject)
+          state.newProject = {}
+          $('#projectCreationModal').modal('hide')
         } catch (error) {
           logger.error(error)
         }

@@ -33,7 +33,7 @@ import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
 import { projectsService } from '../services/ProjectsService'
-import { groupsService } from '../services/GroupsService'
+// import { groupsService } from '../services/GroupsService'
 export default {
   name: 'ProjectPage',
   setup() {
@@ -48,9 +48,8 @@ export default {
     })
     onMounted(async() => {
       try {
-        // await reviewsService.getReviewsByUserId(route.params.id)
-        await projectsService.getProjectsByUserId(route.params.id)
-        await groupsService.getGroupsByUserId(route.params.id)
+        // await projectsService.getProjectsByUserId(route.params.id)
+        // await groupsService.getGroupsByUserId(route.params.id)
       } catch (error) {
         console.error(error)
       }
